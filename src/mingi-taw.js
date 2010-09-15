@@ -32,7 +32,7 @@ function do_mappify(url) {
   mappify_tm2tm = mappify_prefix + 'tm2tm/?tm=';  
   mappify_jsonp = 'out=json&callback=mappified';
   
-  if (url.match(/json/)){
+  if (url.match(/(json|jtm)/)){
    request = url;
   }
   else if (url.match(/(wikipedia|dbpedia)/)){

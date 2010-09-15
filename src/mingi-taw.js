@@ -119,7 +119,7 @@ function print_names(topic) {
 function print_occurrences(topic) {
   occs = topic.getOccurrences();
   occs_div = document.createElement('div');
-  occs_div.class = 'occurrences_title';
+  occs_div.setAttribute('class', 'occurrences_title');
   occs_text = document.createTextNode("Occurrences: ");
   occs_div.appendChild(occs_text);
   

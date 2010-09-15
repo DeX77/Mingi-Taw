@@ -80,20 +80,31 @@ function print_sis(topic) {
 };
 
 function print_characteristic(char) {
-  char_div = document.createElement('div');
-  char_div.setAttribute('class', 'characteristic');  
-  first_name = char.getType().getNames()[0];
-  
-  if (first_name != null) {
-    name = first_name.getValue();
+  if (char.getType().getSubjectIdentifiers()[0].getReference() ===
+  'http://psi.topicmapslab.de/tmexplore/mi') {
+    mi_div = document.createElement('div');
+    mi_div.setAttribute('class', 'more_information');
+    mi_div.setAttribute('onclick', "do_mappify('"+char.getValue()+"'); return false");
+    mi_text = document.createTextNode('Include data from '+ char.getValue());
+    mi_div.appendChild(mi_text);
+    return mi_div;
   }
   else {
-    name ='default';
+    char_div = document.createElement('div');
+    char_div.setAttribute('class', 'characteristic');  
+    first_name = char.getType().getNames()[0];
+    
+    if (first_name != null) {
+      name = first_name.getValue();
+    }
+    else {
+      name ='default';
+    }
+    
+    char_text = document.createTextNode(name +"="+char.getValue());
+    char_div.appendChild(char_text);
+    return char_div;  
   }
-  
-  char_text = document.createTextNode(name +"="+char.getValue());
-  char_div.appendChild(char_text);
-  return char_div;  
 };
 
 function print_characteristics(chars, parent) {  
